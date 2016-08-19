@@ -15,7 +15,7 @@ s.license = { :type => 'BSD', :file => 'copying.txt' }
 s.summary = 'An XMPP Framework in Objective-C for the Mac / iOS development community.'
 s.homepage = 'https://github.com/processOne/XMPPFramework'
 s.author = { 'Robbie Hanson' => 'robbiehanson@deusty.com' }
-s.source = { :git => 'https://github.com/processOne/XMPPFramework.git', :tag => s.version }
+s.source = { :git => 'https://github.com/processOne/XMPPFramework.git', :branch => 'master' }
 s.resources = [ '**/*.{xcdatamodel,xcdatamodeld}']
 
 s.description = 'XMPPFramework provides a core implementation of RFC-3920 (the xmpp standard), along with
@@ -32,14 +32,14 @@ s.requires_arc = true
 # subspecs have been selected, include all of them wrapped in defines which
 # will be set by the relevant subspecs.
 
-s.prepare_command = <<-'END'
-echo '#import "XMPP.h"' > XMPPFramework.h
-grep '#define _XMPP_' -r /Extensions \
-| tr '-' '_' \
-| perl -pe 's/Extensions\/([A-z0-9_]*)\/([A-z]*.h).*/\n#ifdef HAVE_XMPP_SUBSPEC_\U\1\n\E#import "\2"\n#endif/' \
->> XMPPFramework.h
-END
-
+#s.prepare_command = <<-'END'
+#echo '#import "XMPP.h"' > XMPPFramework.h
+#grep '#define _XMPP_' -r /Extensions \
+#| tr '-' '_' \
+#| perl -pe 's/Extensions\/([A-z0-9_]*)\/([A-z]*.h).*/\n#ifdef HAVE_XMPP_SUBSPEC_\U\1\n\E#import "\2"\n#endif/' \
+#>> XMPPFramework.h
+#END
+
 s.preserve_path = 'module/module.modulemap'
 #s.module_map = 'module/module.modulemap'
 
